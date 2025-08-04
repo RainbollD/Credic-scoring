@@ -1,0 +1,20 @@
+experiment_name: credit scoring/all_models
+random_state: 111
+
+corpora:
+  -data/GiveMeSomeCredit-training.csv
+  -data/GiveMeSomeCredit-testing.csv
+
+splitter: "core.splitters.KFoldSplitter"
+splitter_params:
+  shuffle: true
+  random_state: 42
+  n_splits: 5
+
+classificators:
+  -class: "classifiers.LogisticRegression"
+  params:
+    random_state: 42
+
+
+metrics: [ "f1", "precision", "recall", "accuracy","auc" ]
