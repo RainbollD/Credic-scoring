@@ -1,9 +1,9 @@
-experiment_name: credit scoring/all_models
+experiment_name: credit_scoring/all_models
 random_state: 111
 
 corpora:
-  -data/GiveMeSomeCredit-training.csv
-  -data/GiveMeSomeCredit-testing.csv
+  train: data/GiveMeSomeCredit-training.csv
+  test: data/GiveMeSomeCredit-testing.csv
 
 splitter: "core.splitters.KFoldSplitter"
 splitter_params:
@@ -12,7 +12,7 @@ splitter_params:
   n_splits: 5
 
 classificators:
-  -class: "classifiers.LogisticRegression"
+  class_path: "classifiers.LogisticRegressionClassifier"
   params:
     random_state: 42
 
