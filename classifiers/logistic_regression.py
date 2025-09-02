@@ -9,6 +9,7 @@ from sklearn.linear_model import LogisticRegression
 
 from .base import BaseClassifier
 
+
 class LogisticRegressionClassifier(BaseClassifier):
     """
     Классификатор на основе логистической регрессии из sklearn.
@@ -20,7 +21,6 @@ class LogisticRegressionClassifier(BaseClassifier):
 
         :param kwargs: Параметры для sklearn.linear_model.LogisticRegression.
         """
-
         super().__init__(**kwargs)
         self.model = LogisticRegression(**kwargs)
 
@@ -32,7 +32,6 @@ class LogisticRegressionClassifier(BaseClassifier):
         :param y: Метки.
         :param kwargs: Дополнительные параметры обучения.
         """
-
         self.model.fit(X, y)
 
     def predict(self, X: np.ndarray) -> np.ndarray:
@@ -44,5 +43,3 @@ class LogisticRegressionClassifier(BaseClassifier):
         """
 
         return self.model.predict(X)
-
-
