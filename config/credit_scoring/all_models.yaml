@@ -1,20 +1,31 @@
 experiment_name: credit_scoring/all_models
 random_state: 111
 
+divide_dataset: False
+
 corpora:
   train: data/GiveMeSomeCredit-training.csv
   test: data/GiveMeSomeCredit-testing.csv
 
-splitter: "core.splitters.KFoldSplitter"
-splitter_params:
-  shuffle: true
-  random_state: 42
-  n_splits: 5
-
-classificators:
-  class_path: "classifiers.LogisticRegressionClassifier"
+splitter:
+  class_path: "core.splitters.TrainTestSplitter"
   params:
+    shuffle: true
+    test_size: 0.3
     random_state: 42
 
+classificators:
+  - class_path: "classifiers.XGBoostClassifier"
+    params:
+      scale_pos_weight: 15
+      random_state: 42
+#  - class_path: "classifiers.LogisticRegressionClassifier"
+#    params:
+#      max_iter: 100
+#      class_weight: 'balanced'
+#      random_state: 42
 
-metrics: [ "f1", "precision", "recall", "accuracy","auc" ]
+scaler:
+  - class_path: "core.scalers.StandardScaler"
+
+metrics: [ "f1", "precision", "recall", "accuracy", "auc" ]
